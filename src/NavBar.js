@@ -15,7 +15,7 @@ function NavBar() {
                         <NavLink className="nav-link text-center" to="/memory" exact>Memory Game</NavLink>
                     </div>
                     <div className="col col-sm-3 nav-item">
-                        <NavLink className="nav-link text-center" to="/other" exact>Other Game</NavLink>
+                        <NavLink className="nav-link text-center" to="/scores" exact>High Scores</NavLink>
                     </div>
                   </nav>
                 </div>

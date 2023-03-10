@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "./NavBar";
 import Home from './Home';
 import MemoryGame from './Game';
+import Scores from "./Scores";
 import {Routes, Route} from 'react-router-dom';
 // import {Switch, Route} from 'react-router-dom';
 function App() {
@@ -12,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/memory" element={<MemoryGame />} />
-        <Route path="/other"/>
+        <Route path="/scores" element={<Scores />} />
       </Routes>
     </div>
   )
