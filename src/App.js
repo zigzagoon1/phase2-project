@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "./NavBar";
 import Home from './Home';
-import MemoryGame from './Game';
+import MemoryGame from './MemoryGame';
 import Scores from "./Scores";
 import {Routes, Route} from 'react-router-dom';
 // import {Switch, Route} from 'react-router-dom';
