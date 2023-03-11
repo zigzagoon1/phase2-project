@@ -1,17 +1,21 @@
 import React, {useState} from "react";
-import {Card} from "semantic-ui-react"
-function GameCard( {src, alt, scale, frontSrc, onClick} ) {
-    const [front, setFront] = useState(false);
+function GameCard( {src, id, alt, scale, onClick, isFlipped} ) {
+    const [front, setFront] = useState(isFlipped);
     
+    const backOfCard = "../public/images/mount-fuji.png";
+
     function handleClick() {
-        setFront(!front);
-        onClick(alt);
+        console.log(id);
+        setFront(isFlipped);
+        onClick(id);
     }
  
     return (
-    <div className="col card border-2 border-dark col-1 justify-content-center bg-white" onClick={handleClick}>
-        <img src={front ? frontSrc : src} alt={alt} style={{scale: `${scale}%`}}></img>
+ <div className="col-md-2 col-sm-3 col-6 m-auto py-3">
+    <div className="mx-auto card border-2 border-dark justify-content-center bg-white" onClick={handleClick}>
+        <img src={front ? src : backOfCard} alt={alt} style={{scale: `${front ? scale : 100}%`}}></img>
     </div>
+</div>
 
     )
 }

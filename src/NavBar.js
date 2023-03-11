@@ -4,10 +4,9 @@ import { NavLink } from "react-router-dom";
 
 function NavBar() {
     return (
-        <div className="justify-content-center">
-            <div className="container">
-                <div className="row justify-content-around ">
-                  <nav className="nav nav-tabs justify-content-center">
+            <div className="container py-2">
+                <div className="row">
+                  <nav className="navbar nav-tabs justify-content-center">
                     <div className="col col-sm-3 nav-item">
                         <NavLink className="nav-link text-center" to="/">Home</NavLink>
                     </div>
@@ -20,7 +19,6 @@ function NavBar() {
                   </nav>
                 </div>
             </div>
-        </div>
     )
 }
 
