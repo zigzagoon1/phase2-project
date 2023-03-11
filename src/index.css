@@ -21,3 +21,8 @@ a.active{
 .nav {
   align-self: center;
 }
+
+.card {
+  width: 100px;
+  height: 100px;
+}
