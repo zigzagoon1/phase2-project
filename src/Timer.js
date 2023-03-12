@@ -1,12 +1,14 @@
 import React, {useState, useEffect, useContext} from "react";
-import { PauseContext } from "./paused";
+import { PauseContext } from "./context/paused";
+import { UsernameContext } from "./context/username";
 
 
-function Timer( {hasUsername, gameOverLose} ) {
+function Timer( {onGameOver} ) {
     const [time, setTime] = useState(90);
     const [paused, setPaused] = useContext(PauseContext)
+    const [username, setUsername] = useContext(UsernameContext);
     let timeout;
-    if (hasUsername && !paused) {
+    if (username && !paused) {
         timeout = setTimeout(() => {
             setTime(time - 1);
             
@@ -23,7 +25,7 @@ function Timer( {hasUsername, gameOverLose} ) {
     }
     if (time < 1) {
         setPaused(true);
-        gameOverLose(true, null, null);
+        onGameOver(true);
         clearTimeout(timeout);
     }
 

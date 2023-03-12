@@ -16,6 +16,9 @@ function NavBar() {
                     <div className="col col-sm-3 nav-item">
                         <NavLink className="nav-link text-center" to="/scores">High Scores</NavLink>
                     </div>
+                    <div className="col col-sm-3 nav-item">
+                        <NavLink className="nav-link text-center" to="/comments">Comments</NavLink>
+                    </div>
                   </nav>
                 </div>
             </div>

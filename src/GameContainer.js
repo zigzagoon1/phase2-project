@@ -1,12 +1,14 @@
 import React, {useState, useContext} from "react";
 import GameCard from "./GameCard";
-import { PauseContext } from "./paused";
-function GameContainer( {cards, onGameComplete, addToScore, hasUsername, time} ) {
+import { PauseContext } from "./context/paused";
+import { UsernameContext } from "./context/username";
+function GameContainer( {cards, onGameComplete, addToScore, time} ) {
     const [flippedCards, setFlippedCards] = useState([]);
     const [matchedCards, setMatchedCards] = useState([]);
     const [paused, setPaused] = useContext(PauseContext);
+    const [username, hasUsername] = useContext(UsernameContext);
     function handleClick(id) { 
-        if (hasUsername && !paused) {
+        if (username && !paused) {
             const card = cards.find((one) => {
                 return one.id === id
             });
@@ -39,10 +41,9 @@ function GameContainer( {cards, onGameComplete, addToScore, hasUsername, time} )
 
     let cardElements = cards.map((card) => {
         return <GameCard key={Math.random()} id={card.id}
-         src={card.src} alt={card.name} scale={card.scale} paused={paused} isFlipped={flippedCards.includes(card)}isMatched={matchedCards.some((matchedCard) => matchedCard.id === card.id)}onClick={handleClick}/>
-         
+         src={card.src} alt={card.name} scale={card.scale} isFlipped={flippedCards.includes(card)}
+         isMatched={matchedCards.some((matchedCard) => matchedCard.id === card.id)} onClick={handleClick}/>  
     })
-
     return (
       <div className="container-fluid border bg-success">
         <div className="row">
@@ -51,5 +52,4 @@ function GameContainer( {cards, onGameComplete, addToScore, hasUsername, time} )
       </div>
     )
 }
-
 export default GameContainer;

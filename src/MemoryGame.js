@@ -3,13 +3,14 @@ import GameContainer from "./GameContainer";
 import Username from './Username';
 import Score from './Score';
 import Timer from "./Timer";
-import { PauseContext } from "./paused";
+import { PauseContext } from "./context/paused";
+import { UsernameContext } from "./context/username";
 function MemoryGame() {
     const [cards, setCards] = useState([]);
     const [users, setUsers] = useState([]);
     const [score, setScore] = useState(0);
-    const [hasUsername, setHasUsername] = useState(false);
     const [paused, setPaused] = useContext(PauseContext);
+    const [username, setUsername] = useContext(UsernameContext)
     const constantScoreDeduction = 50;
     function shuffleArray(cards) {
         for (let i = cards.length - 1; i > 0; i--) {
@@ -31,19 +32,17 @@ function MemoryGame() {
     }, [])
 
     function handleFormSubmit(value) {
-        setHasUsername(true);
         setUsers([...users, value]);
         setPaused(false);
     }
-    function handleGameComplete(lose, user, score) {
+    function handleGameComplete(lose) {
         if (lose) {
             //show GAME OVER 
             console.log("GAME OVER");
-            return;
         }
         const newUser = {
             "id": users.length + 1,
-            "username": user,
+            "username": username,
             "score": score
         }
         fetch('http://localhost:3000/scores', {
@@ -68,12 +67,12 @@ function MemoryGame() {
         <div className="container justify-content-center">
           <div className="row">
           
-            <Username hasUsername={hasUsername} onSubmit={handleFormSubmit}/>
-            <Timer hasUsername={hasUsername} gameOverLose={handleGameComplete} deductFromScore={handleScore}/>
+            <Username onSubmit={handleFormSubmit}/>
+            <Timer onGameOver={handleGameComplete}/>
             <Score score={score}/>
           </div>
           
-            <GameContainer cards={cards} hasUsername={hasUsername} onGameComplete={handleGameComplete} addToScore={handleScore}/>
+            <GameContainer cards={cards} onGameComplete={handleGameComplete} addToScore={handleScore}/>
         </div>
     )
 }

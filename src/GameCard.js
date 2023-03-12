@@ -1,8 +1,6 @@
-import React, {useContext} from "react";
-import { PauseContext } from "./paused";
+import React from "react";
 function GameCard( {src, id, alt, scale, onClick, isFlipped, isMatched} ) {
     const backOfCard = "../public/images/mount-fuji.png";
-    const [paused, setPaused] = useContext(PauseContext);
     function handleClick() {
         onClick(id);
         

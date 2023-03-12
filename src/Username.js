@@ -1,19 +1,22 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import { UsernameContext } from "./context/username";
 
 function Username( {onSubmit, hasUsername} ) {
-    const [username, setUsername] = useState("");
+    const [username, setUsername] = useContext(UsernameContext);
+    const [userInput, setUserInput] = useState("");
     function handleSubmit(e) {
         e.preventDefault();
+        setUsername(e.target.user_input.value);
         onSubmit(e.target.user_input.value);
     }
     function handleChange(e) {
-        setUsername(e.target.value);
+        setUserInput(e.target.value);
     }
 
     const usernameForm = <div className="col-9 px-p-3">
     <form onSubmit={handleSubmit}>
         <label className="px-2 fw-bold font-monospace">Enter Username to play: </label>
-        <input className="" onChange={handleChange} type="text" name="user_input" value={username}></input>
+        <input className="" onChange={handleChange} type="text" name="user_input" value={userInput}></input>
         <button className="btn btn-sm border-1 btn-outline-dark mx-1" type="submit">Submit</button>
     </form>
   </div>
@@ -24,7 +27,7 @@ function Username( {onSubmit, hasUsername} ) {
     </div>
     </div>
     return (
-        hasUsername ? usernameWelcome : usernameForm
+        username ? usernameWelcome : usernameForm
     ) 
 }
 
