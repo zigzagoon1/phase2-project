@@ -1,9 +1,9 @@
 import React from "react";
 
-function Comment() {
+function Comment( {username, text} ) {
     return (
         <div>
-
+            <p>{username}: {text} </p>
         </div>
     )
 }

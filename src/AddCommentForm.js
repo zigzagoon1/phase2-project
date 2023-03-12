@@ -7,7 +7,8 @@ function AddCommentForm( {onSubmit} ) {
     const [username, setUsername] = useContext(UsernameContext)
 
     function handleSubmit(e) {
-
+        e.preventDefault();
+        onSubmit(e.target.user_input.value);
     }
     function handleChange(e) {
         setInput(e.target.value)

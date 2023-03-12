@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React from "react";
 import NavBar from "./NavBar";
 import Home from './Home';
 import MemoryGame from './MemoryGame';
@@ -8,7 +8,7 @@ import {Routes, Route} from 'react-router-dom';
 import { PauseProvider } from "./context/paused";
 import {UsernameProvider} from './context/username';
 function App() {
-
+  
   return(
     <UsernameProvider>
     <PauseProvider>

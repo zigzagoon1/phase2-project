@@ -5,6 +5,7 @@ import Score from './Score';
 import Timer from "./Timer";
 import { PauseContext } from "./context/paused";
 import { UsernameContext } from "./context/username";
+import { UsersContext } from "./context/allUsers";
 function MemoryGame() {
     const [cards, setCards] = useState([]);
     const [users, setUsers] = useState([]);

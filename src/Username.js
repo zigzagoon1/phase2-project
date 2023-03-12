@@ -1,13 +1,16 @@
 import React, {useState, useContext} from "react";
 import { UsernameContext } from "./context/username";
 
-function Username( {onSubmit} ) {
+function Username( {onSubmit = null} ) {
     const [username, setUsername] = useContext(UsernameContext);
     const [userInput, setUserInput] = useState("");
     function handleSubmit(e) {
         e.preventDefault();
         setUsername(e.target.user_input.value);
+        if (onSubmit) {
         onSubmit(e.target.user_input.value);
+
+        }
     }
     function handleChange(e) {
         setUserInput(e.target.value);

@@ -2,11 +2,14 @@ import React from "react";
 import Comment from "./Comment";
 function Comments( {comments} ) {
     const commentElements = comments.map((comment) => {
-        return <Comment username={comment.username} text={comment.text} />
+        const actualComments = comment.map((com) => {
+            return <Comment key={Math.random()} username={com.username} text={com.text} />
+        })
+        return actualComments;
     })
     return (
         <div>
-
+            {commentElements}
         </div>
     )
 }
