@@ -1,6 +1,9 @@
 import React from "react";
 import Comment from "./Comment";
-function Comments() {
+function Comments( {comments} ) {
+    const commentElements = comments.map((comment) => {
+        return <Comment username={comment.username} text={comment.text} />
+    })
     return (
         <div>
 
