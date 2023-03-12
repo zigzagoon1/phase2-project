@@ -1,42 +1,45 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import GameCard from "./GameCard";
-function GameContainer( {cards} ) {
+import { PauseContext } from "./paused";
+function GameContainer( {cards, onGameComplete, addToScore, hasUsername, time} ) {
     const [flippedCards, setFlippedCards] = useState([]);
     const [matchedCards, setMatchedCards] = useState([]);
-
-    function handleClick(id) {
-        console.log(id);
-        const card = cards.find((one) => {
-            return one.id === id
-        });
-        console.log(card);
-        console.log('click');
-
-        if (flippedCards.length < 2) {
-        setFlippedCards([...flippedCards, card]);
-        console.log(flippedCards)
-        }
-
-        if (flippedCards.length === 1) {
-            if (card.name === flippedCards[0].name) {
-                //match!
-                //add to score
-                //remove cards
-                //play sound
-                console.log('match');
+    const [paused, setPaused] = useContext(PauseContext);
+    function handleClick(id) { 
+        if (hasUsername && !paused) {
+            const card = cards.find((one) => {
+                return one.id === id
+            });
+    
+            if (flippedCards.length < 2) {
+            setFlippedCards([...flippedCards, card]);
             }
-            else {
-                setTimeout(() => {
+    
+            if (flippedCards.length === 1) {
+                if (card.name === flippedCards[0].name && card !== flippedCards[0]) {
+                    //match!
+                    addToScore(150);
+                    setMatchedCards([...matchedCards, card, flippedCards[0]]);
                     setFlippedCards([]);
-                }, 1000);
+                    //play sound
+                    console.log('match');
+                    if (matchedCards.length === cards.length) {
+                        console.log('YOU WIN!');
+                    }
+                }
+                else {
+                    setTimeout(() => {
+                        setFlippedCards([]);
+                    }, 1500);
+                }
             }
         }
+        
     }
 
-    let i = 1;
     let cardElements = cards.map((card) => {
         return <GameCard key={Math.random()} id={card.id}
-         src={card.src} alt={card.name} scale={card.scale} isFlipped={flippedCards.includes(card)}isMatched={matchedCards.some((matchedCard) => matchedCard.id === card.id)}onClick={handleClick}/>
+         src={card.src} alt={card.name} scale={card.scale} paused={paused} isFlipped={flippedCards.includes(card)}isMatched={matchedCards.some((matchedCard) => matchedCard.id === card.id)}onClick={handleClick}/>
          
     })
 
