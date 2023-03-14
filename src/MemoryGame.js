@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from "react";
 import GameContainer from "./GameContainer";
 import Username from './Username';
-import Score from './Score';
+import GameScore from './GameScore';
 import Timer from "./Timer";
 import { PauseContext } from "./context/paused";
 import { UsernameContext } from "./context/username";
@@ -69,7 +69,7 @@ function MemoryGame() {
           
             <Username onSubmit={handleFormSubmit}/>
             <Timer onGameOver={handleGameComplete}/>
-            <Score score={score}/>
+            <GameScore score={score}/>
           </div>
           
             <GameContainer cards={cards} onGameComplete={handleGameComplete} addToScore={handleScore}/>

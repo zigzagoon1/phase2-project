@@ -12,8 +12,8 @@ function App() {
   return(
     <UsernameProvider>
     <PauseProvider>
-    <div className="containerjustify-content-center bg-light border rounded">
-      <h1 className="justify-content-center">Welcome to my phase 2 React Project!</h1>
+    <div className="containerjustify-content-center border rounded bg-light">
+      <h1 className="justify-content-center bg-success bg-gradient">Welcome To My Phase 2 React Project!</h1>
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />

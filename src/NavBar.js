@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 function NavBar() {
     return (
-            <div className="container py-2">
+            <div className="container bg-light py-2">
                 <div className="row">
                   <nav className="navbar nav-tabs justify-content-center">
                     <div className="col col-sm-3 nav-item">
