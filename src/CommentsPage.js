@@ -27,7 +27,7 @@ function CommentsPage() {
         .then((comments) => setComments([comments]));
     }
     return (
-        <div className="">
+        <div className="container-fluid flex-fill" >
             <AddCommentForm onSubmit={handleSubmit}/>
             <Comments comments={comments} />
         </div>
