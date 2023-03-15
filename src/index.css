@@ -22,7 +22,10 @@ a.active{
   align-self: center;
 }
 
-.card {
+#card {
   width: 100px;
   height: 100px;
+}
+i.fa{ 
+  font-family:FontAwesome!important; 
 }
