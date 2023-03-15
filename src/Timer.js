@@ -24,7 +24,7 @@ function Timer( {onGameOver} ) {
 
         }, 1000)
     }
-    if (time < 1 && first) {
+    if (time <= 1 && first) {
         clearTimeout(timeout);
         setFirst(false);
         setPaused(true);

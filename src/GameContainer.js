@@ -37,14 +37,20 @@ function GameContainer({ cards, onGameComplete, addToScore, time }) {
 
       if (firstCard.name === secondCard.name) {
         // match!
-        addToScore(150);
-        setMatchedCards((cards) => [...cards, firstCard, secondCard]);
-        setFlippedCards([]);
-        setFirstCardId(null);
-        console.log("match");
-        if (matchedCards.length === cards.length) {
-          console.log("YOU WIN!");
-        }
+        setTimeout(() => {
+            addToScore(150);
+            setMatchedCards((cards) => [...cards, firstCard, secondCard]);
+            if (matchedCards.length === 30) {
+                onGameComplete(false);
+            }
+            setFlippedCards([]);
+            setFirstCardId(null);
+            console.log("match");
+            if (matchedCards.length === cards.length) {
+              console.log("YOU WIN!");
+            }
+        },1000)
+
       } else {
         setTimeout(() => {
           setFlippedCards([]);
@@ -69,7 +75,7 @@ function GameContainer({ cards, onGameComplete, addToScore, time }) {
 
           return (
             <div className="container-fluid border bg-success">
-            <div className="row">{cardElements}</div>
+                <div className="row">{cardElements}</div>
             </div>
             );
             }
