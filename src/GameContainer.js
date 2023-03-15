@@ -8,6 +8,9 @@ function GameContainer( {cards, onGameComplete, addToScore, time} ) {
     const [paused, setPaused] = useContext(PauseContext);
     const [username, hasUsername] = useContext(UsernameContext);
     function handleClick(id) { 
+        if (paused) {
+            setPaused(false);
+        }
         if (username && !paused) {
             const card = cards.find((one) => {
                 return one.id === id
@@ -23,7 +26,7 @@ function GameContainer( {cards, onGameComplete, addToScore, time} ) {
                     addToScore(150);
                     setMatchedCards([...matchedCards, card, flippedCards[0]]);
                     setFlippedCards([]);
-                    //play sound
+                    //play sound?
                     console.log('match');
                     if (matchedCards.length === cards.length) {
                         console.log('YOU WIN!');
@@ -44,6 +47,8 @@ function GameContainer( {cards, onGameComplete, addToScore, time} ) {
          src={card.src} alt={card.name} scale={card.scale} isFlipped={flippedCards.includes(card)}
          isMatched={matchedCards.some((matchedCard) => matchedCard.id === card.id)} onClick={handleClick}/>  
     })
+
+    
     return (
       <div className="container-fluid border bg-success">
         <div className="row">

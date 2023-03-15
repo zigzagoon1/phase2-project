@@ -13,29 +13,29 @@ function AddCommentForm( {onSubmit} ) {
         switch (currentDate.getMonth()) {
             default:  month = null;
                 break;
-            case 1: month = "January"
+            case 0: month = "January"
                 break;
-            case 2: month = "February"
+            case 1: month = "February"
                 break;
-            case 3: month = "March"
+            case 2: month = "March"
                 break;
-            case 4: month = "April"
+            case 3: month = "April"
                 break;
-            case 5: month = "May"
+            case 4: month = "May"
                 break;
-            case 6: month = "June"
+            case 5: month = "June"
                 break;
-            case 7: month = "July"
+            case 6: month = "July"
                 break;
-            case 8: month = "August"
+            case 7: month = "August"
                 break;
-            case 9: month = "September"
+            case 8: month = "September"
                 break;
-            case 10: month = "October"
+            case 9: month = "October"
                 break;
-            case 11: month = "November"
+            case 10: month = "November"
                 break;
-            case 12: month = "December"
+            case 11: month = "December"
                 break;
         }
         const day = currentDate.getDate();
