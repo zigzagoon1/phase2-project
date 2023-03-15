@@ -2,9 +2,13 @@ import React, {useState, useEffect, useContext, useRef} from "react";
 import AddCommentForm from "./AddCommentForm";
 import Comments from "./Comments";
 import { UsernameContext } from "./context/username";
+import { PauseContext } from "./context/paused";
 function CommentsPage() {
     const [username, setUsername] = useContext(UsernameContext);
     const [comments, setComments] = useState([]);
+    const [scores, setScores] = useState([]);
+    const [paused, setPaused] = useContext(PauseContext);
+    setPaused(true);
     const dateRef = useRef("today");
     const timeRef= useRef("now");
     useEffect(() => {
@@ -35,7 +39,7 @@ function CommentsPage() {
     }
     
     return (
-        <div className="container- py-4" >
+        <div className="container" >
             <AddCommentForm onSubmit={handleSubmit}/>
             <Comments comments={comments} date={dateRef} time={timeRef} />
         </div>

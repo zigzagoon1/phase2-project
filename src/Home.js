@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useContext} from "react";
 import Username from "./Username";
+import { PauseContext } from "./context/paused";
 
 function Home() {
-
+    const [paused, setPaused] = useContext(PauseContext);
+    setPaused(true);
     return (
         <div className="container justify-content-center">
           <div className="row justify-content-center">

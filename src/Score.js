@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Score() {
+function Score( {username, score} ) {
     return (
         <div>
 

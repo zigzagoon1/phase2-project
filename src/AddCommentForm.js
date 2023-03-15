@@ -1,5 +1,6 @@
 import React, {useState, useContext} from "react";
 import { UsernameContext } from "./context/username";
+import Username from "./Username";
 
 function AddCommentForm( {onSubmit} ) {
     const [input, setInput] = useState("");
@@ -60,10 +61,13 @@ function AddCommentForm( {onSubmit} ) {
 </div>
 
     const noUsername = <div className="container-fluid text-center">
-        <h5>You must choose a username to add a comment! Go to the Home page to pick one.</h5>
+        <h5>You must choose a username to add a comment!</h5>
     </div>
     return(
-        username ? hasUsernameDiv : noUsername
+        <div className="container">
+        <Username />
+        {username ? hasUsernameDiv : noUsername}
+        </div>
 
     )
 }

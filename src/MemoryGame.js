@@ -7,10 +7,9 @@ import { PauseContext } from "./context/paused";
 import { UsernameContext } from "./context/username";
 function MemoryGame() {
     const [cards, setCards] = useState([]);
-    const [users, setUsers] = useState([]);
     const [score, setScore] = useState(0);
     const [paused, setPaused] = useContext(PauseContext);
-    const [username, setUsername] = useContext(UsernameContext)
+    const [username] = useContext(UsernameContext)
     const constantScoreDeduction = 50;
     function shuffleArray(cards) {
         for (let i = cards.length - 1; i > 0; i--) {
@@ -26,13 +25,9 @@ function MemoryGame() {
            const finalCards = shuffleArray(cards);
            setCards(finalCards);
         });
-        fetch('http://localhost:3000/scores')
-        .then(r => r.json())
-        .then((users) => setUsers([users.name]));
     }, [])
 
     function handleFormSubmit(value) {
-        setUsers([...users, value]);
         setPaused(false);
     }
     function handleGameComplete(lose) {
@@ -41,7 +36,6 @@ function MemoryGame() {
             console.log("GAME OVER");
         }
         const newUser = {
-            "id": users.length + 1,
             "username": username,
             "score": score
         }

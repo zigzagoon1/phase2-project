@@ -6,7 +6,8 @@ import { UsernameContext } from "./context/username";
 function Timer( {onGameOver} ) {
     const [time, setTime] = useState(90);
     const [paused, setPaused] = useContext(PauseContext)
-    const [username, setUsername] = useContext(UsernameContext);
+    const [username] = useContext(UsernameContext);
+    const [first, setFirst] = useState(true);
     let timeout;
     if (username && !paused) {
         timeout = setTimeout(() => {
@@ -23,10 +24,11 @@ function Timer( {onGameOver} ) {
 
         }, 1000)
     }
-    if (time < 1) {
+    if (time < 1 && first) {
+        clearTimeout(timeout);
+        setFirst(false);
         setPaused(true);
         onGameOver(true);
-        clearTimeout(timeout);
     }
 
     return (
