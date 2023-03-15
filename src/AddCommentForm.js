@@ -5,7 +5,7 @@ import Username from "./Username";
 function AddCommentForm( {onSubmit} ) {
     const [input, setInput] = useState("");
 
-    const [username, setUsername] = useContext(UsernameContext)
+    const [username] = useContext(UsernameContext)
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -55,7 +55,7 @@ function AddCommentForm( {onSubmit} ) {
     const hasUsernameDiv =         <div className="container">
     <form className="row" onSubmit={handleSubmit}>
         <label className="col-3 m-auto px-2" htmlFor="user_input">Add Comment:</label>
-        <input className="col-6 text-wrap" type="text" name="user_input" onChange={handleChange} value={input}></input>
+        <input className="col-6 text-wrap flex-wrap" type="text" name="user_input" onChange={handleChange} value={input}></input>
         <button className="btn btn-outline-dark col-2" type="submit">Submit</button>
     </form>
 </div>

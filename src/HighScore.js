@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Score( {username, score} ) {
+function HighScore( {username, score} ) {
     return (
         <div>
 
@@ -8,4 +8,4 @@ function Score( {username, score} ) {
     )
 }
 
-export default Score;
+export default HighScore;

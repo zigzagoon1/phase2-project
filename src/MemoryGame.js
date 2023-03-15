@@ -28,7 +28,9 @@ function MemoryGame() {
     }, [])
 
     function handleFormSubmit(value) {
+        if (paused) {
         setPaused(false);
+        }
     }
     function handleGameComplete(lose) {
         if (lose) {

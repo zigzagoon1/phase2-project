@@ -1,11 +1,12 @@
 import React, {useState, useEffect, useContext} from "react";
-import Score from './Score'
+import HighScore from './HighScore'
 import { PauseContext } from "./context/paused";
-function Scores() {
+function HighScores() {
     const [scores, setScores] = useState([]);
     const [paused, setPaused] = useContext(PauseContext);
-    setPaused(true);
-    setPaused(true);
+    if (!paused) {
+        setPaused(true);
+    }
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_URL}/scores`)
@@ -14,7 +15,7 @@ function Scores() {
     }, [])
 
     const scoreElements = scores.map((score) => {
-        return <Score key={score.id} username={score.username} score={score.score} />
+        return <HighScore key={score.id} username={score.username} score={score.score} />
     })
     console.log(scores);
     return (
@@ -24,4 +25,4 @@ function Scores() {
     )
 }
 
-export default Scores;
+export default HighScores;

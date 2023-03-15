@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "./NavBar";
 import Home from './Home';
 import MemoryGame from './MemoryGame';
-import Scores from "./Scores";
+import HighScores from "./HighScores";
 import CommentsPage from "./CommentsPage";
 import {Routes, Route} from 'react-router-dom';
 import { PauseProvider } from "./context/paused";
@@ -18,7 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/memory" element={<MemoryGame />} />
-            <Route path="/scores" element={<Scores />} />
+            <Route path="/scores" element={<HighScores />} />
             <Route path="/comments" element={<CommentsPage />} />
           </Routes>
       

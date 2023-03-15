@@ -2,13 +2,12 @@ import React, { useState, useContext, useMemo, useCallback, useEffect } from "re
 import GameCard from "./GameCard";
 import { PauseContext } from "./context/paused";
 import { UsernameContext } from "./context/username";
-import { flip } from "@popperjs/core";
 
-function GameContainer({ cards, onGameComplete, addToScore, time }) {
+function GameContainer({ cards, onGameComplete, addToScore}) {
   const [flippedCards, setFlippedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
   const [paused, setPaused] = useContext(PauseContext);
-  const [username, hasUsername] = useContext(UsernameContext);
+  const [username] = useContext(UsernameContext);
   const [firstCardId, setFirstCardId] = useState(null);
 
   const handleClick = useCallback(
@@ -58,7 +57,7 @@ function GameContainer({ cards, onGameComplete, addToScore, time }) {
         }, 1500);
       }
     }
-  }, [cards, flippedCards, matchedCards, addToScore]);
+  }, [cards, flippedCards, matchedCards, addToScore, onGameComplete]);
 
   const cardElements = useMemo(
     () =>
