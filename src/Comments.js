@@ -3,7 +3,8 @@ import Comment from "./Comment";
 function Comments( {comments = [], date, time} ) {
     const commentElements = comments.map((comment) => {
         const actualComments = comment.map((com) => {
-            return <Comment key={Math.random()} id={com.id} username={com.username} text={com.text} date={com.date} time={com.time}/>
+            return <Comment key={Math.random()} id={com.id} username={com.username} 
+            text={com.text} date={com.date} time={com.time}/>
         })
         return actualComments;
     })

@@ -33,6 +33,7 @@ function CommentsPage() {
         .then(r=> r.json())
         .then((comments) => setComments([comments]));
     }
+    
     return (
         <div className="container- py-4" >
             <AddCommentForm onSubmit={handleSubmit}/>
