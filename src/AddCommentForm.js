@@ -64,7 +64,7 @@ function AddCommentForm( {onSubmit} ) {
         <h5>You must choose a username to add a comment!</h5>
     </div>
     return(
-        <div className="container">
+        <div className="row">
         <Username />
         {username ? hasUsernameDiv : noUsername}
         </div>

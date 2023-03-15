@@ -50,7 +50,7 @@ function MemoryGame() {
         .then((users) => console.log(users));
     }
     function handleScore(value = null) {
-        if (value === null) {
+        if (value === null && score > 0) {
             setScore(score - constantScoreDeduction);
         }
         else {
@@ -62,7 +62,7 @@ function MemoryGame() {
           <div className="row">
           
             <Username onSubmit={handleFormSubmit}/>
-            <Timer onGameOver={handleGameComplete}/>
+            <Timer onGameOver={handleGameComplete} deductFromScore={handleScore}/>
             <GameScore score={score}/>
           </div>
           
