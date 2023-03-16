@@ -30,9 +30,7 @@ function MemoryGame() {
     }, [])
 
     function handleFormSubmit(value) {
-        if (paused) {
-        setPaused(false);
-        }
+ 
     }
     function handleGameComplete(lose) {
         if (lose) {
@@ -64,11 +62,17 @@ function MemoryGame() {
 
     function handleShowModal(e) {
         e.stopPropagation();
+        setPaused(true);
         setShowModal(!showModal);
     }
 
    function handleHideModal(e)
     {
+        //if timer less than 90, setPaused(false) otherwise don't...
+        if (document.querySelector('#timer').innerHTML < 90) {
+        setPaused(false);
+        }
+        
         setShowModal(false);
     }    
 

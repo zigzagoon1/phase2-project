@@ -1,9 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 import { Modal } from "react-bootstrap";
 function HowToPlayModal( {show} ) {
+
     return (
         <Modal show={show} className="modal">
             <Modal.Header className="modal-content bg-light text-center font-monospace fs-3 fw-bold">How to Play</Modal.Header>
+            
                 <Modal.Body className="font-monospace fs-6">
                     Click on a card to flip it over. The first time you click a card, the countdown begins. 
                     Click a second card. If the pictures on the flipped cards match, they will disappear and you will earn points.
