@@ -3,11 +3,13 @@ import GameContainer from "./GameContainer";
 import Username from './Username';
 import GameScore from './GameScore';
 import Timer from "./Timer";
+import HowToPlayModal from "./HowToPlayModal";
 import { PauseContext } from "./context/paused";
 import { UsernameContext } from "./context/username";
 function MemoryGame() {
     const [cards, setCards] = useState([]);
     const [score, setScore] = useState(0);
+    const [showModal, setShowModal] = useState(false);
     const [paused, setPaused] = useContext(PauseContext);
     const [username] = useContext(UsernameContext)
     const constantScoreDeduction = 50;
@@ -59,11 +61,25 @@ function MemoryGame() {
             setScore(score + value);
         }
     }
+
+    function handleShowModal(e) {
+        e.stopPropagation();
+        setShowModal(!showModal);
+    }
+
+   function handleHideModal(e)
+    {
+        setShowModal(false);
+    }    
+
     return (
-        <div className="container justify-content-center">
+        <div onClick={handleHideModal} className="container justify-content-center">
           <div className="row">
-          
             <Username onSubmit={handleFormSubmit}/>
+            <div className="row justify-content-center">
+                <button className="col-2" onClick={(e) => handleShowModal(e)}>How to Play</button>
+            </div>
+            <HowToPlayModal show={showModal}/>
             <Timer onGameOver={handleGameComplete} deductFromScore={handleScore}/>
             <GameScore score={score}/>
           </div>
