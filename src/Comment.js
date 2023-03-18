@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import {Card} from 'react-bootstrap';
 
 
-function Comment( {id, username, text, date, time,} ) {
-    const [likes, setLikes] = useState(0);
+function Comment( {id, username, text, date, time, serverLikes} ) {
+    const [likes, setLikes] = useState(serverLikes);
     const [firstClick, setFirstClick] = useState(true);
 
     function handleLike() {
@@ -35,17 +35,16 @@ function Comment( {id, username, text, date, time,} ) {
     }    
     
     return (
-        <Card className="row border border-dark d-flex" s>
+        <Card className="row border border-dark d-flex">
           <Card.Header className="fw-bold col-12">{username} says:</Card.Header>
             <Card.Body className="row py-0">
                 <p className="py-3 m-auto">{text}</p>
                 <Card.Footer className="row m-auto w-100 p-0">
-                        <p className="col-8 m-0">{date}{time}</p>
+                        <p className="col-sm-4 col-8 m-0">{date}{time}</p>
                         <i className="col-1 py-1 p-0 far fa-thumbs-up" onClick={handleLike}></i>
                         <p className="col-2 m-0 p-0">{likes} likes</p>
                         
                 </Card.Footer>
-
             </Card.Body>
         </Card>
     )

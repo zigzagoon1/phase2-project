@@ -19,8 +19,15 @@ function HighScores() {
     })
     console.log(scores);
     return (
-        <div>
-
+        <div className="container justify-content-center border text-center py-3">
+            <div className="row fa">
+                <div className="col border pt-2 border-danger border-3">
+                    <h1 className="fw-bold border border-danger border-4 font-monospace">High Scores</h1>
+                </div>
+            </div>
+            <div className="py-3">
+                {scoreElements}
+            </div>
         </div>
     )
 }

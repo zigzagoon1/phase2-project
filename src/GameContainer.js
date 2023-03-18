@@ -1,4 +1,4 @@
-import React, { useState, useContext, useMemo, useCallback, useEffect } from "react";
+import React, { useState, useContext, useMemo, useCallback, useEffect, useRef } from "react";
 import GameCard from "./GameCard";
 import { PauseContext } from "./context/paused";
 import { UsernameContext } from "./context/username";
@@ -9,6 +9,8 @@ function GameContainer({ cards, onGameComplete, addToScore}) {
   const [paused, setPaused] = useContext(PauseContext);
   const [username] = useContext(UsernameContext);
   const [firstCardId, setFirstCardId] = useState(null);
+  
+  const prevMatch = useRef(0);
 
   const handleClick = useCallback(
     (card) => {
@@ -37,7 +39,13 @@ function GameContainer({ cards, onGameComplete, addToScore}) {
       if (firstCard.name === secondCard.name) {
         // match!
         setTimeout(() => {
+            prevMatch.current += 1;
+            if (prevMatch.current > 1) {
+              addToScore(300);
+            }
+            else {
             addToScore(150);
+            }
             setMatchedCards((cards) => [...cards, firstCard, secondCard]);
             if (matchedCards.length === 30) {
                 onGameComplete(false);
@@ -52,6 +60,7 @@ function GameContainer({ cards, onGameComplete, addToScore}) {
 
       } else {
         setTimeout(() => {
+          prevMatch.current = 0;
           setFlippedCards([]);
           setFirstCardId(null);
         }, 1500);
@@ -69,6 +78,7 @@ function GameContainer({ cards, onGameComplete, addToScore}) {
           alt={card.name}
           scale={card.scale}
           isFlipped={flippedCards.includes(card.id)}
+          numFlipped={flippedCards.length}
           isMatched={matchedCards.some((matchedCard) => matchedCard.id === card.id)}
           onClick={handleClick} /> )), [cards, flippedCards, matchedCards, handleClick]);
 

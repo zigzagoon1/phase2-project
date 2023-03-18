@@ -60,7 +60,7 @@ function AddCommentForm( {onSubmit} ) {
     </form>
 </div>
 
-    const noUsername = <div className="container-fluid text-center">
+    const noUsername = <div className="container-fluid text-center py-2">
         <h5>You must choose a username to add a comment!</h5>
     </div>
     return(

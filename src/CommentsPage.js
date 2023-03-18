@@ -3,20 +3,14 @@ import AddCommentForm from "./AddCommentForm";
 import Comments from "./Comments";
 import { UsernameContext } from "./context/username";
 import { PauseContext } from "./context/paused";
-function CommentsPage() {
+function CommentsPage( {comments, addComment} ) {
     const [username] = useContext(UsernameContext);
-    const [comments, setComments] = useState([]);
     const [paused, setPaused] = useContext(PauseContext);
     if (!paused) {
     setPaused(true);
     }
     const dateRef = useRef("today");
     const timeRef= useRef("now");
-    useEffect(() => {
-        fetch('http://localhost:3000/comments')
-        .then(r => r.json())
-        .then((comments) => setComments([comments]));
-    }, [])
 
     function handleSubmit(value, date, time) {
         dateRef.current = date;
@@ -28,6 +22,7 @@ function CommentsPage() {
             "time": time,
             "likes": 0
         }
+        addComment(userComment);
         fetch('http://localhost:3000/comments', {
             method: "POST", 
             headers: {
@@ -36,7 +31,7 @@ function CommentsPage() {
             body: JSON.stringify(userComment)
         })
         .then(r=> r.json())
-        .then((comments) => setComments([comments]));
+        .then((comment) => console.log(comment));
     }
     
     return (

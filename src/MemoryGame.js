@@ -6,32 +6,13 @@ import Timer from "./Timer";
 import HowToPlayModal from "./HowToPlayModal";
 import { PauseContext } from "./context/paused";
 import { UsernameContext } from "./context/username";
-function MemoryGame() {
-    const [cards, setCards] = useState([]);
+function MemoryGame( {cards} ) {
     const [score, setScore] = useState(0);
     const [showModal, setShowModal] = useState(false);
     const [paused, setPaused] = useContext(PauseContext);
     const [username] = useContext(UsernameContext)
     const constantScoreDeduction = 50;
-    function shuffleArray(cards) {
-        for (let i = cards.length - 1; i > 0; i--) {
-             const j = Math.floor(Math.random() * (i + 1));
-             [cards[i], cards[j]] = [cards[j], cards[i]];
-        }
-        return cards
-    }
-    useEffect(() => {
-        fetch('http://localhost:3000/memory-card-images')
-        .then(r => r.json())
-        .then((cards) => {
-           const finalCards = shuffleArray(cards);
-           setCards(finalCards);
-        });
-    }, [])
 
-    function handleFormSubmit(value) {
- 
-    }
     function handleGameComplete(lose) {
         if (lose) {
             //show GAME OVER 
@@ -62,7 +43,9 @@ function MemoryGame() {
 
     function handleShowModal(e) {
         e.stopPropagation();
-        setPaused(true);
+        if (!paused) {
+            setPaused(true);
+        }
         setShowModal(!showModal);
     }
 
@@ -79,7 +62,7 @@ function MemoryGame() {
     return (
         <div onClick={handleHideModal} className="container justify-content-center">
           <div className="row">
-            <Username onSubmit={handleFormSubmit}/>
+            <Username />
             <div className="row justify-content-center">
                 <button className="col-2" onClick={(e) => handleShowModal(e)}>How to Play</button>
             </div>

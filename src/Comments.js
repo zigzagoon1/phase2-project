@@ -1,12 +1,9 @@
 import React from "react";
 import Comment from "./Comment";
-function Comments( {comments = [], date, time} ) {
+function Comments( {comments = []} ) {
     const commentElements = comments.map((comment) => {
-        const actualComments = comment.map((com) => {
-            return <Comment key={Math.random()} id={com.id} username={com.username} 
-            text={com.text} date={com.date} time={com.time}/>
-        })
-        return actualComments;
+            return <Comment key={Math.random()} id={comment.id} username={comment.username} 
+            text={comment.text} date={comment.date} time={comment.time} serverLikes={comment.likes}/>
     })
     return (
         <div className="container my-3 px-5 py-5">

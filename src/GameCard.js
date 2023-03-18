@@ -1,18 +1,27 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import { PauseContext } from "./context/paused";
+import { UsernameContext } from "./context/username";
 
-function GameCard({ src, id, alt, scale, onClick, isFlipped, isMatched }) {
+function GameCard({ src, id, alt, scale, onClick, isFlipped, isMatched, numFlipped }) {
   const backOfCard = "../public/images/mount-fuji.png";
     const [front, setFront] = useState(false);
+    const [paused, setPaused] = useContext(PauseContext);
+    const [username, setUsername] = useContext(UsernameContext);
+    const [firstClick, setFirstClick] = useState(true);
   function handleClick() {
     onClick({ id, name: alt });
-    setTimeout(() => {
-    setFront(!front);
-    }, 200);
+    if (!paused && username && numFlipped < 2) {
+      setTimeout(() => {
+      setFront(!front);
+      setFirstClick(false);
+      }, 200);
+    }
+
   }
 
   
 
-  let className = "mx-auto card border-2 border-dark justify-content-center bg-white";
+  let className = "mx-auto card border-2 border-dark justify-content-center bg-light";
   if (isMatched) {
     console.log("is matched");
     className = "visually-hidden";
@@ -23,6 +32,7 @@ function GameCard({ src, id, alt, scale, onClick, isFlipped, isMatched }) {
   else if (!isFlipped && front === true) {
     setTimeout(() => {
     setFront(false);
+    setFirstClick(true);
     }, 200)
   }
 
