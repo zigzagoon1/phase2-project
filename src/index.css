@@ -42,4 +42,16 @@ i.fa{
   src: url('./Fonts/ARCADE.TTF') format("truetype");
 }
 
+i {
+  position: relative;
+  left: 4%;
+}
 
+#add-comment {
+  position: relative;
+  left: 10%;
+}
+#has-username{
+  position: relative;
+  right: 11%
+}

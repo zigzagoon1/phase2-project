@@ -3,7 +3,7 @@ import GameCard from "./GameCard";
 import { PauseContext } from "./context/paused";
 import { UsernameContext } from "./context/username";
 
-function GameContainer({ cards, onGameComplete, addToScore}) {
+function GameContainer({ cards, onGameComplete, addToScore, timeUp }) {
   const [flippedCards, setFlippedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
   const [paused, setPaused] = useContext(PauseContext);
@@ -12,12 +12,17 @@ function GameContainer({ cards, onGameComplete, addToScore}) {
   
   const prevMatch = useRef(0);
 
+  if (timeUp) {
+    setPaused(true);
+  }
   const handleClick = useCallback(
     (card) => {
-      if (paused) {
+      console.log(timeUp);
+      if (paused && !timeUp) {
+        console.log(timeUp);
         setPaused(false);
       }
-      if (username && !paused) {
+      if (username && !paused && !timeUp) {
         if (flippedCards.length < 2 && card.id !== firstCardId) {
           setFlippedCards((cards) => [...cards, card.id]);
 
@@ -26,8 +31,11 @@ function GameContainer({ cards, onGameComplete, addToScore}) {
           }
         }
       }
+      else if (timeUp) {
+        setPaused(true);
+      }
     },
-    [flippedCards, firstCardId, paused, setPaused, username]
+    [flippedCards, firstCardId, paused, setPaused, username, timeUp]
   );
 
   useEffect(() => {
@@ -77,11 +85,11 @@ function GameContainer({ cards, onGameComplete, addToScore}) {
           src={card.src}
           alt={card.name}
           scale={card.scale}
+          timeUp={timeUp}
           isFlipped={flippedCards.includes(card.id)}
           numFlipped={flippedCards.length}
           isMatched={matchedCards.some((matchedCard) => matchedCard.id === card.id)}
-          onClick={handleClick} /> )), [cards, flippedCards, matchedCards, handleClick]);
-
+          onClick={handleClick} /> )), [cards, flippedCards, matchedCards, handleClick, timeUp]);
           return (
             <div className="container-fluid border bg-success">
                 <div className="row">{cardElements}</div>

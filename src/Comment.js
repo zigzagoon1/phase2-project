@@ -30,7 +30,6 @@ function Comment( {id, username, text, date, time, serverLikes} ) {
         .then(r => r.json())
         .then((obj) => { 
             setLikes(obj.likes);
-
         })
     }    
     
@@ -41,8 +40,8 @@ function Comment( {id, username, text, date, time, serverLikes} ) {
                 <p className="py-3 m-auto">{text}</p>
                 <Card.Footer className="row m-auto w-100 p-0">
                         <p className="col-sm-4 col-8 m-0">{date}{time}</p>
-                        <i className="col-1 py-1 p-0 far fa-thumbs-up" onClick={handleLike}></i>
-                        <p className="col-2 m-0 p-0">{likes} likes</p>
+                        <i className="col-1 py-1 far fa-thumbs-up text-center position-relative space-left2" onClick={handleLike}></i>
+                        <p className="col-2 m-0">{likes} likes</p>
                         
                 </Card.Footer>
             </Card.Body>

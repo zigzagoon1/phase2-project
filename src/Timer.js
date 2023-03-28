@@ -25,12 +25,14 @@ function Timer( {onGameOver, deductFromScore} ) {
             //     }
             if (time <= 10) {
                 const p = document.querySelector("p#timer");
+                if (p !== null) {
                 p.className += " text-danger"
+                }
             }
 
         }, 1000)
     }
-    if (time <= 1 && first) {
+    if (time < 1 && first) {
         clearTimeout(timeout);
         setFirst(false);
         setPaused(true);
@@ -38,7 +40,7 @@ function Timer( {onGameOver, deductFromScore} ) {
     }
 
     return (
-        <div className="col text-center p-0">
+        <div className="col-6 text-center p-0">
             <p id="timer" className="fw-bolder fs-1">{time > 0 ? time : 0}</p>
         </div>
     )
