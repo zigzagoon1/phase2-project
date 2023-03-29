@@ -37,11 +37,6 @@ i.fa{
   align-items: center;
 }
 
-@font-face {
-  font-family: "Arcade";
-  src: url('./Fonts/ARCADE.TTF') format("truetype");
-}
-
 i {
   position: relative;
   left: 4%;
