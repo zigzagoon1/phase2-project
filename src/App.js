@@ -8,6 +8,7 @@ import {Routes, Route} from 'react-router-dom';
 import { PauseProvider } from "./context/paused";
 import {UsernameProvider} from './context/username';
 function App() {
+
   const [comments, setComments] = useState([]);
   
   useEffect(() => {
@@ -27,7 +28,7 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/memory" element={<MemoryGame/>} />
+            <Route path="/memory" element={<MemoryGame />} />
             <Route path="/scores" element={<HighScores />} />
             <Route path="/comments" element={<CommentsPage comments={comments} addComment={handleAddComment}/>} />
           </Routes>

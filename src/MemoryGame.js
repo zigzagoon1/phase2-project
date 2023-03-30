@@ -16,6 +16,7 @@ function MemoryGame() {
     const [timeUp, setTimeUp] = useState(false);
     const constantScoreDeduction = 50;
 
+    
     const [cards, setCards] = useState([]);
     useEffect(() => {
         fetch('http://localhost:3000/memory-card-images')

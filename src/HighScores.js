@@ -4,6 +4,7 @@ import { PauseContext } from "./context/paused";
 function HighScores() {
     const [scores, setScores] = useState([]);
     const [paused, setPaused] = useContext(PauseContext);
+    const maxScoresShown = 10;
     if (!paused) {
         setPaused(true);
     }
@@ -18,8 +19,15 @@ function HighScores() {
         })
     }, [])
 
+    let i = 0;
     const scoreElements = scores.map((score) => {
+        i++;
+        if (i > maxScoresShown) {
+            return null;
+        }
+        else {
         return <HighScore key={score.id} username={score.username} score={score.score} />
+        }
     })
     
     return (
