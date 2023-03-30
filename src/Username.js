@@ -1,7 +1,7 @@
 import React, {useState, useContext} from "react";
 import { UsernameContext } from "./context/username";
 
-function Username( {} ) {
+function Username() {
     const [username, setUsername] = useContext(UsernameContext);
     const [userInput, setUserInput] = useState("");
     function handleSubmit(e) {
