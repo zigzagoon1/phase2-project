@@ -22,7 +22,6 @@ function CommentsPage( {comments, addComment} ) {
             "time": time,
             "likes": 0
         }
-        addComment(userComment);
         fetch('http://localhost:3000/comments', {
             method: "POST", 
             headers: {
@@ -31,7 +30,7 @@ function CommentsPage( {comments, addComment} ) {
             body: JSON.stringify(userComment)
         })
         .then(r=> r.json())
-        .then((comment) => console.log(comment));
+        .then((comment) => addComment(comment));
     }
     
     return (
